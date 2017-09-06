@@ -1,9 +1,24 @@
 var express = require('express');
 var app = express();
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var base58 = require('./base58.js');
+var path = require('path');
+
+// grab the url model
+var Url = require('./url.js');
+
+// create connection to MongoDB
+mongoose.connect('mongodb://xander-daine:1234@ds157833.mlab.com:57833/short_microservice');
+
+// handles JSON bodies
+app.use(bodyParser.json());
+// handles URL endcoded bodies
+app.use(bodyParser.urlencoded({extended: true}));
 // module for correct cancatenating paths
 var path = require('path');
 
-var url = "mongodb://xander_daine:1234@ds157833.mlab.com:57833/short_microservice";
+var url = "mongodb://xander-daine:1234@ds157833.mlab.com:57833/short_microservice";
 
 app.use(express.static(path.join(__dirname, 'public')));
 
