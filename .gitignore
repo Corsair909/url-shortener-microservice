@@ -1,0 +1,5 @@
+.glitch-assets
+node_modules
+.grunt
+*.log
+npm-debug.log*
