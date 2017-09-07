@@ -1,13 +1,13 @@
 var express = require('express');
 var app = express();
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var base58 = require('./base58.js');
-var config = require('./config');
 var path = require('path');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var config = require('./config');
+var base58 = require('./base58.js');
 
 // grab the url model
-var Url = require('./url.js');
+var Url = require('./models/url.js');
 
 // create connection to MongoDB
 mongoose.connect('mongodb://xander-daine:1234@ds157833.mlab.com:57833/short_microservice');
@@ -16,10 +16,6 @@ mongoose.connect('mongodb://xander-daine:1234@ds157833.mlab.com:57833/short_micr
 app.use(bodyParser.json());
 // handles URL endcoded bodies
 app.use(bodyParser.urlencoded({extended: true}));
-// module for correct cancatenating paths
-var path = require('path');
-
-var url = "mongodb://xander-daine:1234@ds157833.mlab.com:57833/short_microservice";
 
 app.use(express.static(path.join(__dirname, 'public')));
 
